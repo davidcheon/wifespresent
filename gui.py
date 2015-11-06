@@ -365,17 +365,18 @@ class mygui(wx.Frame):
 			row=self.showitems[int(self.userlistselectionindex)][1]		
 			self.sheetname=self.showitems[int(self.userlistselectionindex)][0]
 			searchresult=self.recorder.getmoredetail(sheetname=self.sheetname,row=row)
-			self.sheetindex=searchresult['sheetindex']
-			self.row=row
-			self.updateusername.SetValue(searchresult['name'])
-			self.updateaddress.SetValue(searchresult['address'])
-			self.updateproduct.SetValue(searchresult['product'])
-			self.updateprice.SetValue(str(searchresult['price']))
-			self.updatecounts.SetValue(str(searchresult['counts']))
-			self.updatefee.SetValue(str(searchresult['fee']))
-			self.updatetotalkr.SetValue(str(searchresult['totalkr']))
-			self.updatetotalrmb.SetValue(str(searchresult['totalrmb']))
-			self.updatechangerate.SetValue(str(searchresult['rate']))
+			if searchreuslt!=None:
+				self.sheetindex=searchresult['sheetindex']
+				self.row=row
+				self.updateusername.SetValue(searchresult['name'])
+				self.updateaddress.SetValue(searchresult['address'])
+				self.updateproduct.SetValue(searchresult['product'])
+				self.updateprice.SetValue(str(searchresult['price']))
+				self.updatecounts.SetValue(str(searchresult['counts']))
+				self.updatefee.SetValue(str(searchresult['fee']))
+				self.updatetotalkr.SetValue(str(searchresult['totalkr']))
+				self.updatetotalrmb.SetValue(str(searchresult['totalrmb']))
+				self.updatechangerate.SetValue(str(searchresult['rate']))
 		
 	def searchvaluechangeaction(self,evt):
 		self.userlist.Clear()
