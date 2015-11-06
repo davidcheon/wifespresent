@@ -217,25 +217,27 @@ class recorder(object):
 				result[shname]['rows'].append(row) if result[shname].has_key('rows') else result[shname].setdefault('rows',[row])
 		return result
 	def getmoredetail(self,**args):
-		result={}
-		for n in xrange(self.rxld.nsheets):
-			name=self.rxld.sheet_by_index(n).name
-			if name==args['sheetname']:
-				result['sheetindex']=n
-				break
-		sheet=self.rxld.sheet_by_name(args['sheetname'])
-		row=args['row']
-		result['name']=sheet.cell_value(row,0)
-		result['address']=sheet.cell_value(row,1)
-		result['product']=sheet.cell_value(row,2)
-		result['price']=sheet.cell_value(row,3)
-		result['counts']=sheet.cell_value(row,4)
-		result['fee']=sheet.cell_value(row,5)
-		result['totalkr']=sheet.cell_value(row,6)
-		result['rate']=sheet.cell_value(row,7)
-		result['totalrmb']=sheet.cell_value(row,8)
-		
-		return result
+		if fileexist():
+			result={}
+			for n in xrange(self.rxld.nsheets):
+				name=self.rxld.sheet_by_index(n).name
+				if name==args['sheetname']:
+					result['sheetindex']=n
+					break
+			sheet=self.rxld.sheet_by_name(args['sheetname'])
+			row=args['row']
+			result['name']=sheet.cell_value(row,0)
+			result['address']=sheet.cell_value(row,1)
+			result['product']=sheet.cell_value(row,2)
+			result['price']=sheet.cell_value(row,3)
+			result['counts']=sheet.cell_value(row,4)
+			result['fee']=sheet.cell_value(row,5)
+			result['totalkr']=sheet.cell_value(row,6)
+			result['rate']=sheet.cell_value(row,7)
+			result['totalrmb']=sheet.cell_value(row,8)	
+			return result
+		else:
+			return None
 	def fileexist(self):
 		return os.path.exists(self.file)
 	def deletesheet(self,**args):
