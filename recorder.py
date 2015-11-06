@@ -217,7 +217,7 @@ class recorder(object):
 				result[shname]['rows'].append(row) if result[shname].has_key('rows') else result[shname].setdefault('rows',[row])
 		return result
 	def getmoredetail(self,**args):
-		if fileexist():
+		if self.fileexist():
 			result={}
 			for n in xrange(self.rxld.nsheets):
 				name=self.rxld.sheet_by_index(n).name

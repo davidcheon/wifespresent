@@ -322,9 +322,9 @@ class mygui(wx.Frame):
 							if self.userlist.IsEmpty():
 								self.searchusername.SetValue('')
 								self.searchaddress.SetValue('')
-							self.searchdeletebutton.Disable()				
-							self.searchbutton.Disable()
-							self.clearupdateinfo()
+								self.searchdeletebutton.Disable()				
+								self.searchbutton.Disable()
+								self.clearupdateinfo()
 							users=self.recorder.getcurrentusers(sheetname)
 							self.currentusers.SetLabel(u'当前记录的用户:%s'%('\t'.join(users)))
 					else:
@@ -365,7 +365,7 @@ class mygui(wx.Frame):
 			row=self.showitems[int(self.userlistselectionindex)][1]		
 			self.sheetname=self.showitems[int(self.userlistselectionindex)][0]
 			searchresult=self.recorder.getmoredetail(sheetname=self.sheetname,row=row)
-			if searchreuslt!=None:
+			if searchresult!=None:
 				self.sheetindex=searchresult['sheetindex']
 				self.row=row
 				self.updateusername.SetValue(searchresult['name'])
@@ -501,7 +501,7 @@ class mygui(wx.Frame):
 			self.leftstatus.SetLabel('写入成功!')
 			self.showmessage('写入成功!')
 		except Exception,e:
-			raise e
+#			raise e
 			self.leftstatus.SetLabel(str(e))
 			self.showmessage(str(e))
 		self.leftstatus.SetLabel('')
